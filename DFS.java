@@ -2,6 +2,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Collection;
 
+/**
+* Implement Depth-First Search.
+*
+* @author Lucas Lima Vieira
+*/
+
 public class DFS {
 	public static void dfs(Graph graph) {
 		for (Vertix vertix : graph.getVertices()) {
@@ -13,7 +19,7 @@ public class DFS {
 
 	public static void dfsUtil(Vertix vertix) {
 		vertix.visited = true;
-		System.out.println(vertix.value);
+		System.out.print(vertix.value + " ");
 
 		for (Vertix adj : vertix.adj) {
 			if (adj.visited == false) {
@@ -23,7 +29,7 @@ public class DFS {
 	}
 
 	public static void main(String args[]) {
-		Graph graph = new Graph();
+		Graph graph1 = new Graph();
 
 		Vertix v1 = new Vertix(1);
 		Vertix v2 = new Vertix(2);
@@ -31,17 +37,41 @@ public class DFS {
 		Vertix v4 = new Vertix(4);
 		Vertix v5 = new Vertix(5);
 
-		graph.addVertix(v1);
-		graph.addVertix(v2);
-		graph.addVertix(v3);
-		graph.addVertix(v4);
+		graph1.addVertix(v1);
+		graph1.addVertix(v2);
+		graph1.addVertix(v3);
+		graph1.addVertix(v4);
 
-		graph.addEdge(v1, v2);
-		graph.addEdge(v1, v3);
-		graph.addEdge(v1, v4);
-		graph.addEdge(v3, v5);
+		graph1.addEdge(v1, v2);
+		graph1.addEdge(v1, v3);
+		graph1.addEdge(v1, v4);
+		graph1.addEdge(v3, v5);
 
-		dfs(graph);
+		// Output: 1, 2, 3, 5, 4
+		dfs(graph1);
+		System.out.println();
+
+		Graph graph2 = new Graph();
+
+		v1 = new Vertix(1);
+		v2 = new Vertix(2);
+		v3 = new Vertix(3);
+		v4 = new Vertix(4);
+		v5 = new Vertix(5);
+
+		graph2.addVertix(v1);
+		graph2.addVertix(v2);
+		graph2.addVertix(v3);
+		graph2.addVertix(v4);
+
+		graph2.addEdge(v1, v3);
+		graph2.addEdge(v3, v5);
+		graph2.addEdge(v1, v4);
+		graph2.addEdge(v4, v2);
+
+		// Output: 1, 3, 5, 4, 2
+		dfs(graph2);
+		System.out.println();
 	}
 }
 
