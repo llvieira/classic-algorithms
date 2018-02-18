@@ -1,16 +1,33 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Queue;
+import java.util.LinkedList;
 import java.util.Collection;
 
 /**
-* Implement Depth-First Search.
+* Implement Breadth-First Search.
 *
 * @author Lucas Lima Vieira
 */
 
 public class BFS {
-	public static void bfs(Graph graph) {
-		//TODO: add code here.
+	public static void bfs(Vertix vertix) {
+		Queue<Vertix> queue = new LinkedList<>();
+
+		vertix.visited = true;
+		queue.add(vertix);
+
+		while (! queue.isEmpty()) {
+			Vertix head = queue.remove();
+			System.out.print(head.value + " ");
+			
+			for (Vertix adj : head.adj) {
+				if (! adj.visited) {
+					adj.visited = true;
+					queue.add(adj);
+				}
+			}
+		}
 	}
 
 	public static void main(String args[]) {
@@ -32,8 +49,8 @@ public class BFS {
 		graph1.addEdge(v1, v4);
 		graph1.addEdge(v3, v5);
 
-		// Output: 1, 2, 3, 5, 4
-		bfs(graph1);
+		// Output: 1, 2, 3, 4, 5 
+		bfs(v1);
 		System.out.println();
 
 		Graph graph2 = new Graph();
@@ -54,8 +71,8 @@ public class BFS {
 		graph2.addEdge(v1, v4);
 		graph2.addEdge(v4, v2);
 
-		// Output: 1, 3, 5, 4, 2
-		bfs(graph2);
+		// Output: 1, 3, 4, 5, 2
+		bfs(v1);
 		System.out.println();
 	}
 }
